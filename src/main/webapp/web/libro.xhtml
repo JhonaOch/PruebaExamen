@@ -1,0 +1,271 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <div class="modal fade" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="mediumModalLabel">Agregar Libro</h5>
+
+                    </div>
+                    <h:form>
+                        <div class="modal-body">
+
+                            <div class="form-row">
+
+                                <div class="form-group col-md-4 ">
+                                    <label for="nombre">Nombre</label>
+                                    <h:inputText class="form-control" id="nombre" value="${libroBean.nombre}" required="true"
+                                                 requiredMessage="Campo Obligatorio"/>
+                                    <h:message for="nombre" style="color:red" />
+
+                                    <br></br>
+
+                                    <label for="ISBN">ISBN</label>
+                                    <h:inputText class="form-control" id="ISBN" value="${libroBean.ISBN}" required="true"
+                                                 requiredMessage="Campo Obligatorio"/>
+                                    <h:message for="ISBN" style="color:red" />
+
+                                    <br></br>
+                                    <label for="Paginas">Numero Paginas</label>
+
+
+
+                                    <h:inputText class="form-control" value="#{libroBean.numeroPaginas}" size="2" 
+                                                 converter="javax.faces.Integer" />
+
+
+
+
+
+
+
+
+
+
+
+                                </div>
+
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <h:commandButton class="btn btn-success" value="Crear Libro" action="#{libroBean.guardarDatos()}" />
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+
+                    <br>
+
+                    </br>
+
+                    <br>
+
+                    </br>
+
+
+
+
+                    <h5 class="modal-title" id="mediumModalLabel">Agregar Capitulos</h5>
+
+                    <h:form>
+                        <div class="modal-body">
+
+                            <div class="form-row">
+
+                                <div class="form-group col-md-4 ">
+
+
+
+                                    <label for="titulo">Numeros</label>
+
+                                    <h:inputText class="form-control" value="#{libroBean.numero}" size="2" 
+                                                 converter="javax.faces.Integer" />
+
+
+
+
+                                    <br></br>
+
+                                    <label for="titulo">Titulo</label>
+                                    <h:inputText class="form-control" id="titulo" value="#{libroBean.titulo}"  required="true"
+                                                 requiredMessage="Campo Obligatorio"/>
+                                    <h:message for="titulo" style="color:red" />
+
+                                    <br></br>
+
+
+                                    <div class="form-group col-md-6">
+                                        <label for="producto-categoria">Lista :</label>
+                                        <h:selectOneMenu class="form-control" id="Libro-categoria" converter="selectOneMenuConverter" value="#{libroBean.libro}">
+                                            <f:selectItem  itemLabel="Seleccione..." itemValue="#{null}" noSelectionOption="true"  />
+                                            <f:selectItems  value="#{libroBean.libros}" var="Libro" 
+                                                            itemLabel="#{Libro.nombre}" itemValue="#{Libro}"/>
+                                        </h:selectOneMenu>
+                                        <h:message for="Libro-categoria" style="color:red" />
+                                    </div>  
+
+
+                                    <div class="form-group col-md-6">
+                                        <label for="producto-categoria">Lista Autores :</label>
+                                        <h:selectOneMenu class="form-control" id="Autor-categoria" converter="selectOneMenuConverter" value="#{libroBean.autor}">
+                                            <f:selectItem  itemLabel="Seleccione..." itemValue="#{null}" noSelectionOption="true"  />
+                                            <f:selectItems  value="#{libroBean.autores}" var="Autor" 
+                                                            itemLabel="#{Autor.nombre}" itemValue="#{Autor}"/>
+                                        </h:selectOneMenu>
+                                        <h:message for="Libro-categoria" style="color:red" />
+                                    </div> 
+
+
+                                </div>
+
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <h:commandButton class="btn btn-success" value="Crear Capitulos" action="#{libroBean.guardarCapitulos()}" />
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <div>
+            
+            <div class="col-sm-4 d-flex">
+                        <div class="page-header float-left d-flex align-items-center">
+                            <div class="page-title ">
+                                <h:form id="f-buscar" class="d-flex">
+                                    <div class="form-group mr-3">
+                                        <label for="input-search" class="sr-only">Buscar</label>
+                                        <h:inputText class="form-control" id="input-search" a:placeholder="Buscar"
+                                                     value="#{libroBean.nombreAutor}"
+                                                     
+                                                     
+                                                     />
+                                    </div>
+                                    <!-- <h:commandButton class="btn btn-primary" value="Buscar"
+                                                      action=""
+                                                      />   -->
+
+
+                                    <h:column>
+                                        <f:facet name="header">Acciones</f:facet>
+
+                                        <h:commandLink class="btn btn-primary mr-3" style="width: 100px; height: 40px;" value="Buscar" action="#{libroBean.buscarPorNombre()}"
+                                                       rendered="#{libroBean.nombreAutor == null}" />
+                                       
+
+                                    </h:column>
+
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+            
+            
+            <h1>
+                BUSCAR NOMBRE
+            </h1> 
+            
+            <ui:repeat value="#{libroBean.autores}" var="c">
+                  #{c.nombre} 
+                  #{c.nacionalidad}
+                  #{c.capitulo.libro.nombre}
+                             <br></br>
+                            
+                        </ui:repeat>
+            
+            
+
+            <h1>LISTA </h1>
+
+            <h:form>
+                <h:dataTable  value="#{libroBean.libros}" var="l" styleClass="table w-100"
+                              headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar" >
+
+
+                    <h:column class="serial">
+                        <f:facet class="serial" name="header">Codigo</f:facet>#{l.codigo}
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet class="serial" name="header">Nombre</f:facet>#{l.nombre}
+                        
+                    </h:column>
+                    
+                    <h:column>
+                        
+                        <f:facet class="serial" name="header">Capitulos</f:facet>
+                        <ui:repeat value="#{l.capitulos}" var="c">
+                             #{c.titulo} 
+                             <br></br>
+                            
+                        </ui:repeat>
+                       
+                        
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet class="serial" name="header">Autor</f:facet>
+                        
+                            <ui:repeat value="#{l.capitulos}" var="c">
+                             #{c.autor.nombre} 
+                             <br></br>
+                            
+                        </ui:repeat>
+                      
+                        
+                    </h:column>
+
+                   
+
+                </h:dataTable>
+            </h:form>
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    </h:body>
+
+
+
+
+
+</html>
+
